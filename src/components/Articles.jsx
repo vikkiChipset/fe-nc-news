@@ -1,24 +1,31 @@
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
+import { getArticles } from "../utils/api";
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
-
-  const [error, setError] = useState(null);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://be-nc-news-hh3y.onrender.com/api/articles")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch articles");
-        }
-        return response.json();
+    setIsLoading(true);
+    getArticles()
+      .then((data) => {
+        setArticles(data);
+        setIsLoading(false);
       })
-      .then((data) => setArticles(data.articles));
+      .catch((err) => {
+        setIsError(true);
+        setIsLoading(false);
+      });
   }, []);
 
-  if (error) {
-    return <p>Error: {error}</p>;
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Oh no! An error!</p>;
   }
 
   return (
