@@ -7,11 +7,13 @@ export default function Header() {
   return (
     <header>
       <h1>NC News</h1>
-      <img
-        src="/cat.jpg"
-        alt="Cat"
-        style={{ width: "100px", height: "auto" }}
-      />
+      <Link to="/">
+        <img
+          src="/ironman.png"
+          alt="ironman"
+          style={{ width: "100px", height: "auto" }}
+        />
+      </Link>
       <nav>
         <Link to="/articles">All Articles</Link>
         <div
