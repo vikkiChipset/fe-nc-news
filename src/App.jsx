@@ -5,20 +5,23 @@ import Articles from "./components/Articles";
 import Login from "./components/Login";
 import IndividualArticleCard from "./components/IndividualArticleCard";
 import Home from "./components/Home";
+import { UserProvider } from "./context/User";
 
 export default function App() {
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/articles" element={<Articles />} />
-        <Route
-          path="/articles/:article_id"
-          element={<IndividualArticleCard />}
-        />
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </Router>
+    <UserProvider>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/articles" element={<Articles />} />
+          <Route
+            path="/articles/:article_id"
+            element={<IndividualArticleCard />}
+          />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
+    </UserProvider>
   );
 }

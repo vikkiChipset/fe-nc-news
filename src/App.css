@@ -160,4 +160,50 @@ nav a:hover {
 #single-article button:hover {
   background-color: #555;
 }
+.comments {
+    margin-top: 2rem;
+    text-align: left;
+  }
+  
+  .comments h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .comment {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .comment strong {
+    color: #333;
+  }
+  
+  .comment p {
+    margin: 0.5rem 0;
+    color: #555;
+  }
+  
+  .comment h5 {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .comment button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .comment button:hover {
+    background-color: #555;
+  }
 
