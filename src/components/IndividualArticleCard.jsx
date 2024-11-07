@@ -12,12 +12,17 @@ const IndividualArticleCard = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const { loggedInUser } = useContext(UserContext);
+  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
-    getArticleById(article_id).then((articleData) => {
-      setArticle(articleData);
-      setVoteCount(articleData.votes);
-    });
+    getArticleById(article_id)
+      .then((articleData) => {
+        setArticle(articleData);
+        setVoteCount(articleData.votes);
+      })
+      .catch(() => {
+        setIsError("Article not found.");
+      });
   }, [article_id]);
 
   const handleVote = (increment) => {
@@ -60,6 +65,15 @@ const IndividualArticleCard = () => {
       });
   };
 
+  if (isError) {
+    return (
+      <div>
+        <h2>404 - {isError}</h2>
+        <p>The article you are looking for does not exist.</p>
+      </div>
+    );
+  }
+
   return (
     <div id="single-article">
       <h2>{article.title}</h2>
@@ -92,7 +106,7 @@ const IndividualArticleCard = () => {
           </button>
         </>
       ) : (
-        <p>Please log in to post a comment.</p>
+        <p>Please <Link to="/login">log in</Link> to post a comment.</p>
       )}
       {feedbackMessage && <p>{feedbackMessage}</p>}
 

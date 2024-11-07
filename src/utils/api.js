@@ -27,15 +27,24 @@ const patchArticleVotes = (id, inc_votes) => {
 };
 
 const postComment = (articleId, comment) => {
-    return api.post(`api/articles/${articleId}/comments`, comment).then((response) => {
+  return api
+    .post(`api/articles/${articleId}/comments`, comment)
+    .then((response) => {
       return response.data.comment;
     });
-  };
+};
 
-  const deleteComment = (commentId) => {
-    return api.delete(`api/comments/${commentId}`).then((response) => {
-      return response.data; 
-    });
-  };
+const deleteComment = (commentId) => {
+  return api.delete(`api/comments/${commentId}`).then((response) => {
+    return response.data;
+  });
+};
 
-export { getArticles, getArticleById, getCommentsById, patchArticleVotes, postComment, deleteComment};
+export {
+  getArticles,
+  getArticleById,
+  getCommentsById,
+  patchArticleVotes,
+  postComment,
+  deleteComment,
+};
