@@ -11,7 +11,6 @@ const IndividualArticleCard = () => {
   const [newComment, setNewComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
-  const [comments, setComments] = useState([]);
   const { loggedInUser } = useContext(UserContext);
 
   useEffect(() => {
@@ -50,14 +49,15 @@ const IndividualArticleCard = () => {
 
     postComment(article_id, commentData)
       .then((postedComment) => {
-        setComments((prevComments) => [postedComment, ...prevComments]);
-        setNewComment("");
         setFeedbackMessage("Comment posted successfully!");
+        setNewComment("");
       })
       .catch(() => {
         setFeedbackMessage("Error posting comment. Please try again.");
       })
-   
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return (
@@ -96,7 +96,7 @@ const IndividualArticleCard = () => {
       )}
       {feedbackMessage && <p>{feedbackMessage}</p>}
 
-      <Comments comments={comments} />
+      <Comments />
     </div>
   );
 };

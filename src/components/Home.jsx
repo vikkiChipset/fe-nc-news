@@ -34,7 +34,9 @@ export default function Home() {
             <h1>Welcome back, {loggedInUser.name}!</h1>
           </div>
         ) : (
-          <h1>Welcome to NC News! Please <Link to="/login">log in.</Link></h1>
+          <h1>
+            Welcome to NC News! Please <Link to="/login">log in.</Link>
+          </h1>
         )}
       </div>
 
