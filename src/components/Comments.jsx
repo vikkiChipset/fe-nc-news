@@ -26,7 +26,7 @@ export default function Comments() {
   }, [article_id]);
 
   const handleDelete = (commentId) => {
-    setDeletingCommentId(commentId); 
+    setDeletingCommentId(commentId);
     deleteComment(commentId)
       .then(() => {
         setComments((prevComments) =>
@@ -37,7 +37,7 @@ export default function Comments() {
         setIsError(true);
       })
       .finally(() => {
-        setDeletingCommentId(null); 
+        setDeletingCommentId(null);
       });
   };
 
@@ -55,15 +55,15 @@ export default function Comments() {
                 <strong>{comment.author}</strong> commented:
               </p>
               <p>{comment.body}</p>
-              <p>
-                Posted on: {new Date(comment.created_at).toLocaleString()}
-              </p>
+              <p>Posted on: {new Date(comment.created_at).toLocaleString()}</p>
               {loggedInUser && loggedInUser.username === comment.author && (
                 <button
                   onClick={() => handleDelete(comment.comment_id)}
                   disabled={deletingCommentId === comment.comment_id}
                 >
-                  {deletingCommentId === comment.comment_id ? "Deleting..." : "Delete"}
+                  {deletingCommentId === comment.comment_id
+                    ? "Deleting..."
+                    : "Delete"}
                 </button>
               )}
             </div>
