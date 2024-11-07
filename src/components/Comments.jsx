@@ -8,6 +8,7 @@ export default function Comments() {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  
 
   useEffect(() => {
     setIsLoading(true);
@@ -28,7 +29,7 @@ export default function Comments() {
   return (
     <div className="comments">
       <h3>All comments:</h3>
-      <HideShow contentType={"comment"}>
+      <HideShow contentType={"comments"}>
         {comments.length > 0 ? (
           comments.map((comment) => (
             <div key={comment.comment_id} className="comment">
@@ -37,7 +38,7 @@ export default function Comments() {
               </p>
               <p>{comment.body}</p>
               <p>
-                Posted on: {new Date(comment.created_at).toLocaleDateString()}
+                Posted on: {new Date(comment.created_at).toLocaleString()}
               </p>
             </div>
           ))
