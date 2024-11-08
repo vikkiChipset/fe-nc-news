@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getArticles } from "../utils/api";
 import ArticleCard from "./ArticleCard";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Articles() {
   const [articles, setArticles] = useState([]);
@@ -32,12 +31,16 @@ export default function Articles() {
 
   const handleSortChange = (e) => {
     const [newSortBy, newOrder] = e.target.value.split(":");
-    setSearchParams({ topic: topic || "", sort_by: newSortBy, order: newOrder });
+    setSearchParams({
+      topic: topic || "",
+      sort_by: newSortBy,
+      order: newOrder,
+    });
   };
 
   if (isLoading) return <p>Loading articles...</p>;
 
-  if (isError && topic !=="null") {
+  if (isError && topic !== "null") {
     return (
       <div>
         <h2>404 - {isError}</h2>
@@ -49,7 +52,7 @@ export default function Articles() {
   return (
     <div className="articles-list">
       <h2>
-        {topic && topic !=="null"
+        {topic && topic !== "null"
           ? `${topic.charAt(0).toUpperCase() + topic.slice(1)} Articles`
           : "All Articles"}
       </h2>
@@ -69,15 +72,14 @@ export default function Articles() {
           <option value="votes:asc">Least Votes</option>
         </select>
       </div>
-      <div className="row gx-4 gy-4">
-      {articles.length > 0 ? (
-  
-        articles.map((article) => (
-          <ArticleCard key={article.article_id} article={article} />
-        ))
-      ) : (
-        <p>No articles available for this topic.</p>
-      )}
+      <div className="three-articles-design">
+        {articles.length > 0 ? (
+          articles.map((article) => (
+            <ArticleCard key={article.article_id} article={article} />
+          ))
+        ) : (
+          <p>No articles available for this topic.</p>
+        )}
       </div>
     </div>
   );

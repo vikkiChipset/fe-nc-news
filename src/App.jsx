@@ -12,24 +12,26 @@ export default function App() {
     <UserProvider>
       <Router>
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/articles" element={<Articles />} />
-          <Route
-            path="/articles/:article_id"
-            element={<IndividualArticleCard />}
-          />
-          <Route path="/login" element={<Login />} />
-          <Route
-            path="*"
-            element={
-              <div>
-                <h2>404 - Page Not Found</h2>
-                <p>The page you are looking for does not exist.</p>
-              </div>
-            }
-          />
-        </Routes>
+        <div className="page-wrapper">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/articles" element={<Articles />} />
+            <Route
+              path="/articles/:article_id"
+              element={<IndividualArticleCard />}
+            />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="*"
+              element={
+                <div>
+                  <h2>404 - Page Not Found</h2>
+                  <p>The page you are looking for does not exist.</p>
+                </div>
+              }
+            />
+          </Routes>
+        </div>
       </Router>
     </UserProvider>
   );
