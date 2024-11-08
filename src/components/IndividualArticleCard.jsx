@@ -13,6 +13,7 @@ const IndividualArticleCard = () => {
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const { loggedInUser } = useContext(UserContext);
   const [isError, setIsError] = useState(null);
+  const [createdComment, setCreatedComment] = useState(null);
 
   useEffect(() => {
     getArticleById(article_id)
@@ -54,7 +55,9 @@ const IndividualArticleCard = () => {
 
     postComment(article_id, commentData)
       .then((postedComment) => {
+        //console.log(postedComment)
         setFeedbackMessage("Comment posted successfully!");
+        setCreatedComment(postedComment);
         setNewComment("");
       })
       .catch(() => {
@@ -81,8 +84,7 @@ const IndividualArticleCard = () => {
       <button onClick={() => handleVote(1)}>Vote +</button>
       <button onClick={() => handleVote(-1)}>Vote -</button>
       <h3>
-        Posted on: {new Date(article.created_at).toLocaleDateString()} by{" "}
-        {article.author}
+        Posted on: {new Date(article.created_at).toLocaleDateString()}
       </h3>
       <img src={article.article_img_url} alt="Article" />
       <h3>{article.body}</h3>
@@ -106,11 +108,13 @@ const IndividualArticleCard = () => {
           </button>
         </>
       ) : (
-        <p>Please <Link to="/login">log in</Link> to post a comment.</p>
+        <p>
+          Please <Link to="/login">log in</Link> to post a comment.
+        </p>
       )}
       {feedbackMessage && <p>{feedbackMessage}</p>}
 
-      <Comments />
+      <Comments newComment={createdComment} />
     </div>
   );
 };
