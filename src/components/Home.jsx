@@ -27,7 +27,7 @@ export default function Home() {
   if (isError) return <p>Failed to load articles. Please try again.</p>;
 
   return (
-    <div className="home">
+    <div>
       <div>
         {loggedInUser ? (
           <div>
@@ -41,8 +41,8 @@ export default function Home() {
       </div>
 
       <h2>Take a look at our most popular articles:</h2>
-      <div className="articles-grid">
-        {articles.map((article) => (
+      <div className="three-articles-design">
+        {articles.slice(0,3).map((article) => (
           <ArticleCard key={article.article_id} article={article} />
         ))}
       </div>

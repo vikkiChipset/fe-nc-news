@@ -267,4 +267,28 @@ nav a:hover {
 
 .page-wrapper {
   padding: 1rem;
+  /* max-width: 1200px;
+  margin: auto; */
+} 
+
+.home {
+  display: grid;
+  gap: 1rem;
+ padding: 1rem;
 }
+
+
+/* .three-articles-design {
+  flex-wrap: wrap;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+
+  .article-card {
+/* max-width: 450px; */
+/* min-width: 350px;
+flex: 1;
+
+
+  }
+
