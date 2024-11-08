@@ -4,13 +4,22 @@ import { getCommentsById, deleteComment } from "../utils/api";
 import HideShow from "./HideShow";
 import { UserContext } from "../context/User";
 
-export default function Comments() {
+export default function Comments(props) {
+  const { newComment } = props;
   const { article_id } = useParams();
   const { loggedInUser } = useContext(UserContext);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [deletingCommentId, setDeletingCommentId] = useState(null);
+
+  useEffect(() => {
+    if (!newComment) return;
+
+    setComments((comments) => {
+      return [newComment, ...comments];
+    });
+  }, [newComment]);
 
   useEffect(() => {
     setIsLoading(true);

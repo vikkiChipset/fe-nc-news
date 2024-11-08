@@ -51,6 +51,7 @@ export default function Login() {
           <img
             src={loggedInUser.avatar_url}
             alt={`${loggedInUser.name}'s avatar`}
+            style={{ width: "100px", height: "auto" }}
           />
           <br />
           <button onClick={logout}>Logout</button>
